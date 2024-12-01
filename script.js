@@ -103,7 +103,7 @@ function checkCollisions() {
 function endGame() {
     clearInterval(gameInterval);
     clearInterval(dropInterval);
-    alert(score >= 50 ? 'You win!😍' : 'Try again!');
+    alert(score >= 50 ? '恭喜!太厲害啦😍' : '再試一次吧🥺!');
 }
 
 document.addEventListener('keydown', e => {
