@@ -1,0 +1,64 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #eae4dc; /* Morandi-style background */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+}
+
+canvas {
+    border: 2px solid #d7cec7;
+    background-color: #fdf9f6;
+}
+
+#startButton {
+    padding: 10px 20px;
+    font-size: 20px;
+    background-color: #c5b8a5;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    margin-top: 20px;
+}
+
+#startButton:hover {
+    background-color: #b3a08b;
+}
+
+.info {
+    font-size: 20px;
+    margin: 10px;
+}
+
+/* 調整網頁布局 */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #eae4dc;
+    color: #4a4a4a;
+    margin: 0;
+    padding: 0;
+    display: block; /* 確保內容正常排列 */
+}
+
+/* 確保內容可以超出視窗並滾動 */
+.container {
+    max-width: 800px;
+    margin: 20px auto; /* 中心對齊並加入外間距 */
+    padding: 20px;
+    background-color: #f8f5f2;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    overflow: visible; /* 確保容器內內容不被裁剪 */
+}
+
+/* 確保 body 可以滾動 */
+html, body {
+    height: auto; /* 不限制高度 */
+    overflow-y: auto; /* 啟用垂直滾動 */
+}
