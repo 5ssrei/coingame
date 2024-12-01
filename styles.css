@@ -1,64 +1,85 @@
+/* 全局樣式 */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #eae4dc; /* Morandi-style background */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
     margin: 0;
-    overflow: hidden;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f2ede4; /* 莫蘭迪底色 */
 }
 
-canvas {
-    border: 2px solid #d7cec7;
-    background-color: #fdf9f6;
+.container {
+    text-align: center;
+    padding: 20px;
 }
 
-#startButton {
-    padding: 10px 20px;
-    font-size: 20px;
-    background-color: #c5b8a5;
-    color: white;
-    border: none;
+/* 標題樣式 */
+header h1 {
+    font-size: 2rem;
+    color: #4f4a41; /* 深咖啡莫蘭迪 */
+}
+
+/* 遊戲規則 */
+.rules, .controls, .score-info {
+    margin: 15px auto;
+    padding: 10px;
+    max-width: 600px;
+    border: 1px solid #c3bcb3; /* 莫蘭迪邊框色 */
+    background-color: #e6dfd3; /* 莫蘭迪背景色 */
     border-radius: 10px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.rules ul, .controls p {
+    text-align: left;
+    color: #4f4a41; /* 深咖啡色文字 */
+}
+
+/* 畫布樣式 */
+#gameCanvas {
+    display: block;
+    margin: 20px auto;
+    border: 2px solid #c3bcb3;
+    border-radius: 10px;
+    background-color: #fff;
+    max-width: 100%;
+    height: auto;
+}
+
+/* 按鈕樣式 */
+#startButton {
+    margin: 10px auto;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    background-color: #b8a89a; /* 莫蘭迪按鈕色 */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
     cursor: pointer;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-    margin-top: 20px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
 }
 
 #startButton:hover {
-    background-color: #b3a08b;
+    background-color: #9f9184; /* 按鈕懸停效果 */
 }
 
-.info {
-    font-size: 20px;
-    margin: 10px;
-}
+/* 適配手機螢幕 */
+@media screen and (max-width: 768px) {
+    header h1 {
+        font-size: 1.8rem;
+    }
 
-/* 調整網頁布局 */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #eae4dc;
-    color: #4a4a4a;
-    margin: 0;
-    padding: 0;
-    display: block; /* 確保內容正常排列 */
-}
+    .rules, .controls, .score-info {
+        padding: 10px;
+        font-size: 0.9rem;
+    }
 
-/* 確保內容可以超出視窗並滾動 */
-.container {
-    max-width: 800px;
-    margin: 20px auto; /* 中心對齊並加入外間距 */
-    padding: 20px;
-    background-color: #f8f5f2;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    overflow: visible; /* 確保容器內內容不被裁剪 */
-}
+    #startButton {
+        font-size: 1rem;
+        padding: 8px 16px;
+    }
 
-/* 確保 body 可以滾動 */
-html, body {
-    height: auto; /* 不限制高度 */
-    overflow-y: auto; /* 啟用垂直滾動 */
+    #gameCanvas {
+        width: 90%; /* 讓畫布適配屏幕寬度 */
+        height: auto; /* 自動調整高度 */
+    }
 }

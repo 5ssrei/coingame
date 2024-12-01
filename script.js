@@ -4,7 +4,6 @@ const startButton = document.getElementById('startButton');
 const timerElement = document.getElementById('timer');
 const scoreElement = document.getElementById('score');
 
-// 載入圖片資源
 const images = {
     character: new Image(),
     fishBall: new Image(),
@@ -31,9 +30,12 @@ const itemTypes = [
     { name: 'bomb', score: -4, image: images.bomb }
 ];
 
+let orientationEnabled = false;
+let tiltX = 0;
+
 function startGame() {
     resetGame();
-    gameInterval = setInterval(updateGame, 16); // ~60fps
+    gameInterval = setInterval(updateGame, 16);
     dropInterval = setInterval(spawnItem, 1000);
 }
 
@@ -56,6 +58,11 @@ function updateGame() {
     drawItems();
     checkCollisions();
     if (timeLeft <= 0) endGame();
+
+    if (orientationEnabled) {
+        player.x += tiltX * 3;
+        player.x = Math.max(0, Math.min(player.x, canvas.width - player.width));
+    }
 }
 
 function drawPlayer() {
@@ -96,7 +103,7 @@ function checkCollisions() {
 function endGame() {
     clearInterval(gameInterval);
     clearInterval(dropInterval);
-    alert(score >= 50 ? 'You win! Claim your hotpot set!' : 'Try again!');
+    alert(score >= 50 ? 'You win!😍' : 'Try again!');
 }
 
 document.addEventListener('keydown', e => {
@@ -104,7 +111,34 @@ document.addEventListener('keydown', e => {
     if (e.key === 'ArrowRight') player.x = Math.min(canvas.width - player.width, player.x + 20);
 });
 
-startButton.addEventListener('click', startGame);
+function enableOrientation() {
+    if (typeof DeviceOrientationEvent.requestPermission === 'function') {
+        DeviceOrientationEvent.requestPermission()
+            .then(response => {
+                if (response === 'granted') {
+                    orientationEnabled = true;
+                    window.addEventListener('deviceorientation', handleOrientation);
+                } else {
+                    alert('需要啟用方向感應才能玩此遊戲！');
+                }
+            })
+            .catch(console.error);
+    } else if ('ondeviceorientation' in window) {
+        orientationEnabled = true;
+        window.addEventListener('deviceorientation', handleOrientation);
+    } else {
+        alert('此設備不支援方向感應。');
+    }
+}
+
+function handleOrientation(event) {
+    tiltX = event.gamma / 5;
+}
+
+startButton.addEventListener('click', () => {
+    enableOrientation();
+    startGame();
+});
 
 setInterval(() => {
     if (timeLeft > 0) {
